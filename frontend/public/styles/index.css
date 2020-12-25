@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+
+body {
+  background-color: #264653;
+  color: white;
+  font: 1.5rem/1.25 'Montserrat', sans-serif;
+}
+
+#banner {
+  height: 8em;
+}
+
+#header {
+  margin: auto;
+  text-align: center;
+  width: 20%;
+}
+
+#createInterview {
+  display:block;
+  margin: auto;
+  text-align: center;
+  width: 20%;
+  color: #E9C46A;
+  border: 0.125em solid #E9C46A;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+#createInterview:hover {
+  background: #E9C46A;
+  color: #264653;
+}
+
+#interviewCreator {
+  margin: auto;
+  border: 0.125em solid #E9C46A;
+  width: 80%;
+}
+
+div.questions {
+  margin: auto;
+  width: 80%;
+}
+
+div.question {
+  background-color: #2A9D8F;
+}
+
+a.removeQuestion {
+  display:block;
+  text-align: center;
+  width: 20%;
+  color: #9E3C3A;
+  border: 0.125em solid #9E3C3A;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: 2em;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+a.removeQuestion:hover {
+  background: #9E3C3A;
+  color: #2A9D8F;
+}
+
+a.addQuestion {
+  display:block;
+  text-align: center;
+  width: 20%;
+  color: #E9C46A;
+  border: 0.125em solid #E9C46A;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: 2em;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+a.addQuestion:hover {
+  background: #E9C46A;
+  color: #264653;
+}
+
+a.submitInterview {
+  display:block;
+  text-align: center;
+  width: 20%;
+  color: #E9C46A;
+  border: 0.125em solid #E9C46A;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: 2em;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+a.submitInterview:hover {
+  background: #E9C46A;
+  color: #264653;
+}
