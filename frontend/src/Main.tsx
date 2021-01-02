@@ -1,25 +1,18 @@
 import * as React from 'react';
-import { App } from './App';
+import { Banner } from './Banner';
 
-export interface IMainProps
+export interface MainProps
 {
-    app: App;
+
 }
 
-export class Main extends React.Component<IMainProps, {}>
+export class Main extends React.Component<MainProps, {}>
 {
-    constructor(props: IMainProps)
-    {
-        super(props);
-    }
 
     public render(): JSX.Element
     {
         return (
-            <>
-                Main app2111he
-                <br />
-            </>
+            <Banner />
         );
     }
 }
