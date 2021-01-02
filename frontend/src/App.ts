@@ -1,4 +1,4 @@
-import { Main } from './Main';
+import { Root } from './Root';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
@@ -11,7 +11,7 @@ export class App
 
     private render(): void
     {
-        ReactDOM.render(React.createElement(Main, {}), document.getElementById("root"));
+        ReactDOM.render(React.createElement(Root, {}), document.body);
     }
 }
 
