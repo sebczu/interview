@@ -95,8 +95,10 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
   }
 
   private onClick() { 
-    let lastIndex = Array.from(this.state.questions.keys()).pop();
-
+    let lastIndex = 0;
+    if (this.state.questions.size !== 0) {
+      lastIndex = Array.from(this.state.questions.keys()).pop();
+    }
     this.state.questions.set(++lastIndex, {question: "", type: "text"});
 
     this.setState({ 
