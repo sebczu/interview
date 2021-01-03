@@ -1,14 +1,18 @@
 import * as React from 'react';
 import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { Banner } from './Banner';
 import { CreateInterviewButton } from './CreateInterviewButton';
 import { CreateInterviewForm } from './CreateInterviewForm';
 
-const RootStyle = styled.div`
-	background-color: #264653;
-  color: white;
-  font: 1.5rem/1.25 'Montserrat', sans-serif;
-`;
+const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+  body {
+    background-color: #264653;
+    color: white;
+    font: 1.5rem/1.25 'Montserrat', sans-serif;
+  }
+`
 
 export interface RootProps
 {
@@ -17,7 +21,7 @@ export interface RootProps
 
 export interface RootState
 {
-  createInterviewButtonVisible
+  interviewButtonVisible
 }
 
 export class Root extends React.Component<RootProps, RootState>
@@ -26,27 +30,36 @@ export class Root extends React.Component<RootProps, RootState>
   constructor(props) {
     super(props);
     this.state = {
-      createInterviewButtonVisible: true
+      interviewButtonVisible: true
     }
   }
 
   public showInterviewForm() {    
     this.setState({      
-      createInterviewButtonVisible: false    
+      interviewButtonVisible: false    
     });  
   }
 
-  public render()
+  public showInterviewButton() {    
+    this.setState({      
+      interviewButtonVisible: true    
+    });  
+  }
+
+  public render(): JSX.Element
   {
     return (
-      <RootStyle>
+      <div>
+        <GlobalStyles />
+
         <Banner />
         {
-        this.state.createInterviewButtonVisible
+        this.state.interviewButtonVisible
           ? <CreateInterviewButton root={this} />
-          : <CreateInterviewForm />
+          : <CreateInterviewForm root={this} />
         }
-      </RootStyle>
+
+      </div>
     );
   }
 }

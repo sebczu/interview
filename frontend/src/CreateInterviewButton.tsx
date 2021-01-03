@@ -24,7 +24,7 @@ const CreateInterviewButtonStyle = styled.a`
 
 export interface CreateInterviewButtonProps
 {
-  root: Root
+  root: Root;
 }
 
 export class CreateInterviewButton extends React.Component<CreateInterviewButtonProps, {}>
