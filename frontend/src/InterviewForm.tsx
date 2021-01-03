@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from "styled-components";
 import { Root } from './Root';
+import {QuestionList} from './QuestionList';
 
 const InterviewFormStyle = styled.div`
   margin: auto;
@@ -35,11 +36,12 @@ export interface InterviewFormProps
 export class InterviewForm extends React.Component<InterviewFormProps, {}>
 {
 
-
   public render(): JSX.Element
   {
       return (
           <InterviewFormStyle>
+            <QuestionList />
+
             <SubmitButtonStyle onClick={() => this.onClick()}>
               SUBMIT
             </SubmitButtonStyle>
