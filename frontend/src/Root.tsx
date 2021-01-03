@@ -1,9 +1,8 @@
 import * as React from 'react';
-import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { Banner } from './Banner';
-import { CreateInterviewButton } from './CreateInterviewButton';
-import { CreateInterviewForm } from './CreateInterviewForm';
+import { InterviewButton } from './InterviewButton';
+import { InterviewForm } from './InterviewForm';
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
@@ -55,8 +54,8 @@ export class Root extends React.Component<RootProps, RootState>
         <Banner />
         {
         this.state.interviewButtonVisible
-          ? <CreateInterviewButton root={this} />
-          : <CreateInterviewForm root={this} />
+          ? <InterviewButton root={this} />
+          : <InterviewForm root={this} />
         }
 
       </div>

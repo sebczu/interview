@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 import { Root } from './Root';
 
-const CreateInterviewButtonStyle = styled.a`
+const InterviewButtonStyle = styled.a`
   display:block;
   margin: auto;
   text-align: center;
@@ -22,12 +22,12 @@ const CreateInterviewButtonStyle = styled.a`
 `;
 
 
-export interface CreateInterviewButtonProps
+export interface InterviewButtonProps
 {
   root: Root;
 }
 
-export class CreateInterviewButton extends React.Component<CreateInterviewButtonProps, {}>
+export class InterviewButton extends React.Component<InterviewButtonProps, {}>
 {
 
   constructor(props) {
@@ -37,9 +37,9 @@ export class CreateInterviewButton extends React.Component<CreateInterviewButton
   public render(): JSX.Element
   {
       return (
-          <CreateInterviewButtonStyle onClick={() => this.onClick()}>
+          <InterviewButtonStyle onClick={() => this.onClick()}>
             CREATE NEW INTERVIEW
-          </CreateInterviewButtonStyle>
+          </InterviewButtonStyle>
       );
   }
 

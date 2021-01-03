@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 import { Root } from './Root';
 
-const CreateInterviewFormStyle = styled.div`
+const InterviewFormStyle = styled.div`
   margin: auto;
   border: 0.125em solid #E9C46A;
   width: 80%;
@@ -27,23 +27,23 @@ const SubmitButtonStyle = styled.a`
   }
 `;
 
-export interface CreateInterviewFormProps
+export interface InterviewFormProps
 {
   root: Root;
 }
 
-export class CreateInterviewForm extends React.Component<CreateInterviewFormProps, {}>
+export class InterviewForm extends React.Component<InterviewFormProps, {}>
 {
 
 
   public render(): JSX.Element
   {
       return (
-          <CreateInterviewFormStyle>
+          <InterviewFormStyle>
             <SubmitButtonStyle onClick={() => this.onClick()}>
               SUBMIT
             </SubmitButtonStyle>
-          </CreateInterviewFormStyle>
+          </InterviewFormStyle>
       );
   }
 
