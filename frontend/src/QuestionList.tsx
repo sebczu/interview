@@ -4,6 +4,7 @@ import { Question, QuestionData } from './Question';
 
 const QuestionListStyle = styled.div`
   margin: auto;
+  margin-top: 1em;
   width: 80%;
 `;
 

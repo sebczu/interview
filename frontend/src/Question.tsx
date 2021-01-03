@@ -3,21 +3,33 @@ import styled from "styled-components";
 
 const QuestionStyle = styled.div`
   background-color: #2A9D8F;
+  padding: 1em;
+  margin-top: 1.5em;
 `;
 
 const QuestionTextStyle = styled.h4`
+  display: inline;
+  color: #264653;
+  font-size: 1em;
+  font-weight: 500;
+`;
 
+const QuestionInputStyle = styled.textarea`
+  border: 0.125em solid #264653;
+  font-size: 1em;
+  font-weight: 500;
+  width: 85%;
 `;
 
 const RemoveQuestionButtonStyle = styled.a`
-  display:block;
+  display: block;
   text-align: center;
   width: 20%;
   color: #9E3C3A;
   border: 0.125em solid #9E3C3A;
   padding-top: 1em;
   padding-bottom: 1em;
-  margin: 2em;
+  margin-top: 1em;
   font-size: 1rem;
   font-weight: 900;
   cursor: pointer;
@@ -65,9 +77,9 @@ export class Question extends React.Component<QuestionProps, {}>
   {
       return (
           <QuestionStyle>
-            <QuestionTextStyle> Question </QuestionTextStyle>
+            <QuestionTextStyle> Question: </QuestionTextStyle>
 
-            <input
+            <QuestionInputStyle
               value={this.props.data.question}
               onChange={this.questionInputHander}
             />
