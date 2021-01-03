@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from "styled-components";
-import { Root } from './Root';
+import styled from 'styled-components';
+import { Question } from './Question';
 
 const QuestionListStyle = styled.div`
   margin: auto;
@@ -31,22 +31,80 @@ export interface QuestionListProps
 
 }
 
-export class QuestionList extends React.Component<QuestionListProps, {}>
+export interface QuestionListState
 {
+  questions: Map<number, QuestionData>;
+}
+
+export interface QuestionData 
+{
+  question: string;
+  type: string;
+}
+
+export class QuestionList extends React.Component<QuestionListProps, QuestionListState>
+{
+
+  constructor(props) {
+    super(props);
+    let initQuestions = new Map<number, QuestionData>();
+    initQuestions.set(0, {question: "", type: "text"});
+    this.state = {
+      questions: initQuestions,
+    }
+  }
+
+  questionInputHander = (questionIndex: number, question: string) => {
+    for (let key of this.state.questions.keys()) {
+      if (key === questionIndex) {
+        this.state.questions.get(key).question = question;
+      }       
+    }
+
+    this.setState({ 
+      questions: this.state.questions
+    })
+  };
+
+  questionRemoveHander = (questionIndex: number) => {
+    this.state.questions.delete(questionIndex);
+
+    this.setState({ 
+      questions: this.state.questions
+    })
+  };
 
   public render(): JSX.Element
   {
       return (
           <QuestionListStyle>
-            <AddQuestionButtonStyle onClick={() => this.onClick()}>
-              ADD
-            </AddQuestionButtonStyle>
+
+            {
+              Array.from( this.state.questions ).map(([key, value]) => {
+                return <Question index={key} 
+                  question={value.question}
+                  questionInputHander={this.questionInputHander} 
+                  questionRemoveHander={this.questionRemoveHander} />
+
+              })
+            }
+
+            <AddQuestionButtonStyle onClick={() => this.onClick()}> ADD </AddQuestionButtonStyle>
           </QuestionListStyle>
       );
   }
 
-  onClick() {
-    console.log("add question");
+  private onClick() { 
+    let lastIndex = Array.from(this.state.questions.keys()).pop();
+
+    this.state.questions.set(++lastIndex, {question: "", type: "text"});
+
+    this.setState({ 
+      questions: this.state.questions
+    })
+
+
+    this.state.questions.forEach((item, index) => console.log("index: " + index + " item: "+ item.question));
   }
   
 }

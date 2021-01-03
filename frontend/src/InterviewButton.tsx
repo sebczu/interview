@@ -36,11 +36,11 @@ export class InterviewButton extends React.Component<InterviewButtonProps, {}>
 
   public render(): JSX.Element
   {
-      return (
-          <InterviewButtonStyle onClick={() => this.onClick()}>
-            CREATE NEW INTERVIEW
-          </InterviewButtonStyle>
-      );
+    return (
+      <InterviewButtonStyle onClick={() => this.onClick()}>
+        CREATE NEW INTERVIEW
+      </InterviewButtonStyle>
+    );
   }
 
   onClick() {
