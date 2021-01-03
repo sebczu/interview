@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Question } from './Question';
+import { Question, QuestionData } from './Question';
 
 const QuestionListStyle = styled.div`
   margin: auto;
@@ -36,19 +36,13 @@ export interface QuestionListState
   questions: Map<number, QuestionData>;
 }
 
-export interface QuestionData 
-{
-  question: string;
-  type: string;
-}
-
 export class QuestionList extends React.Component<QuestionListProps, QuestionListState>
 {
 
   constructor(props) {
     super(props);
     let initQuestions = new Map<number, QuestionData>();
-    initQuestions.set(0, {question: "", type: "text"});
+    initQuestions.set(1, {question: "", type: "text"});
     this.state = {
       questions: initQuestions,
     }
@@ -82,7 +76,7 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
             {
               Array.from( this.state.questions ).map(([key, value]) => {
                 return <Question index={key} 
-                  question={value.question}
+                  data={value}
                   questionInputHander={this.questionInputHander} 
                   questionRemoveHander={this.questionRemoveHander} />
 

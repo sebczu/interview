@@ -31,9 +31,15 @@ const RemoveQuestionButtonStyle = styled.a`
 export interface QuestionProps
 {
   index: number;
-  question: string;
+  data: QuestionData;
   questionInputHander: (questionIndex: number, question: string) => void;
   questionRemoveHander: (questionIndex: number) => void;
+}
+
+export interface QuestionData 
+{
+  question: string;
+  type: string;
 }
 
 export class Question extends React.Component<QuestionProps, {}>
@@ -62,7 +68,7 @@ export class Question extends React.Component<QuestionProps, {}>
             <QuestionTextStyle> Question </QuestionTextStyle>
 
             <input
-              value={this.props.question}
+              value={this.props.data.question}
               onChange={this.questionInputHander}
             />
 
