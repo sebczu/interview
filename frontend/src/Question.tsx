@@ -7,32 +7,47 @@ const QuestionStyle = styled.div`
   margin-top: 1.5em;
 `;
 
+const QuestionDivStyle = styled.div`
+  overflow:hidden
+`;
+
 const QuestionTextStyle = styled.h4`
   display: inline;
+  float: left;
   color: #264653;
   font-size: 1em;
   font-weight: 500;
+  margin: 0px;
 `;
 
 const QuestionInputStyle = styled.textarea`
+  display: inline;
+  float: left;
   border: 0.125em solid #264653;
   font-size: 1em;
   font-weight: 500;
+  height: 1em;
+  min-height: 1em;
   width: 85%;
+  min-width: 85%;
+  max-width: 85%;
 `;
 
 const RemoveQuestionButtonStyle = styled.a`
   display: block;
+  clear: both;
+  
   text-align: center;
   width: 20%;
   color: #9E3C3A;
   border: 0.125em solid #9E3C3A;
   padding-top: 1em;
   padding-bottom: 1em;
-  margin-top: 1em;
+  margin-top: 2em;
   font-size: 1rem;
   font-weight: 900;
   cursor: pointer;
+  
 
   &:hover {
     background: #9E3C3A;
@@ -77,12 +92,14 @@ export class Question extends React.Component<QuestionProps, {}>
   {
       return (
           <QuestionStyle>
-            <QuestionTextStyle> Question: </QuestionTextStyle>
+            <QuestionDivStyle>
+              <QuestionTextStyle> Question: </QuestionTextStyle>
 
-            <QuestionInputStyle
-              value={this.props.data.question}
-              onChange={this.questionInputHander}
-            />
+              <QuestionInputStyle
+                value={this.props.data.question}
+                onChange={this.questionInputHander}
+              />
+            </QuestionDivStyle>
 
             <RemoveQuestionButtonStyle onClick={this.questionRemoveHander}> REMOVE </RemoveQuestionButtonStyle>
           </QuestionStyle>
