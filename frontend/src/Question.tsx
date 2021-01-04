@@ -1,10 +1,18 @@
 import * as React from 'react';
 import styled from "styled-components";
+import { keyframes } from "styled-components";
+
+const QuestionAnimation = keyframes`
+  0% { opacity: 0.0 }
+  100% { opacity: 1.0 }
+`;
 
 const QuestionStyle = styled.div`
   background-color: #2A9D8F;
   padding: 1em;
   margin-top: 1.5em;
+
+  animation: ${QuestionAnimation} 500ms linear;
 `;
 
 const QuestionDivStyle = styled.div`

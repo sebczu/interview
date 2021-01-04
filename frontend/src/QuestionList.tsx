@@ -1,11 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { keyframes } from "styled-components";
 import { Question, QuestionData } from './Question';
 
 const QuestionListStyle = styled.div`
   margin: auto;
   margin-top: 1em;
   width: 80%;
+`;
+
+const AddQuestionButtonAnimation = keyframes`
+  0% { opacity: 0.0 }
+  100% { opacity: 1.0 }
 `;
 
 const AddQuestionButtonStyle = styled.a`
@@ -25,6 +31,8 @@ const AddQuestionButtonStyle = styled.a`
     background: #E9C46A;
     color: #264653;
   }
+
+  animation: ${AddQuestionButtonAnimation} 500ms linear;
 `;
 
 export interface QuestionListProps

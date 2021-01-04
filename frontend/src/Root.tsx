@@ -6,6 +6,11 @@ import { InterviewForm } from './InterviewForm';
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+  * {
+    padding: 0;
+  }
+
   body {
     background-color: #264653;
     color: white;
