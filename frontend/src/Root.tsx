@@ -25,13 +25,13 @@ export interface RootProps
 
 export interface RootState
 {
-  interviewButtonVisible
+  interviewButtonVisible: boolean;
 }
 
 export class Root extends React.Component<RootProps, RootState>
 {
 
-  constructor(props) {
+  constructor(props: RootProps) {
     super(props);
     this.state = {
       interviewButtonVisible: true

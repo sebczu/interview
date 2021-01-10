@@ -44,6 +44,10 @@ export interface InterviewFormProps
 export class InterviewForm extends React.Component<InterviewFormProps, {}>
 {
 
+  constructor(props: InterviewFormProps) {
+    super(props);
+  }
+
   public render(): JSX.Element
   {
       return (

@@ -48,7 +48,7 @@ export interface QuestionListState
 export class QuestionList extends React.Component<QuestionListProps, QuestionListState>
 {
 
-  constructor(props) {
+  constructor(props: QuestionListProps) {
     super(props);
     let initQuestions = new Map<number, QuestionData>();
     initQuestions.set(1, {question: "", type: "text"});
@@ -57,7 +57,7 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
     }
   }
 
-  questionInputHander = (questionIndex: number, question: string) => {
+  questionInputHandler = (questionIndex: number, question: string) => {
     for (let key of this.state.questions.keys()) {
       if (key === questionIndex) {
         this.state.questions.get(key).question = question;
@@ -69,7 +69,7 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
     })
   };
 
-  questionRemoveHander = (questionIndex: number) => {
+  questionRemoveHandler = (questionIndex: number) => {
     this.state.questions.delete(questionIndex);
 
     this.setState({ 
@@ -77,25 +77,17 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
     })
   };
 
-  public render(): JSX.Element
-  {
-      return (
-          <QuestionListStyle>
+  questionTypeHandler = (questionIndex: number, questionType: string) => {
+    for (let key of this.state.questions.keys()) {
+      if (key === questionIndex) {
+        this.state.questions.get(key).type = questionType;
+      }       
+    }
 
-            {
-              Array.from( this.state.questions ).map(([key, value]) => {
-                return <Question index={key} 
-                  data={value}
-                  questionInputHander={this.questionInputHander} 
-                  questionRemoveHander={this.questionRemoveHander} />
-
-              })
-            }
-
-            <AddQuestionButtonStyle onClick={() => this.onClick()}> ADD </AddQuestionButtonStyle>
-          </QuestionListStyle>
-      );
-  }
+    this.setState({ 
+      questions: this.state.questions
+    })
+  };
 
   private onClick() { 
     let lastIndex = 0;
@@ -110,6 +102,27 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
 
 
     this.state.questions.forEach((item, index) => console.log("index: " + index + " item: "+ item.question));
+  }
+
+  public render(): JSX.Element
+  {
+      return (
+          <QuestionListStyle>
+
+            {
+              Array.from( this.state.questions ).map(([key, value]) => {
+                return <Question index={key} 
+                  data={value}
+                  questionInputHandler={this.questionInputHandler} 
+                  questionRemoveHandler={this.questionRemoveHandler}
+                  questionTypeHandler={this.questionTypeHandler} />
+
+              })
+            }
+
+            <AddQuestionButtonStyle onClick={() => this.onClick()}> ADD </AddQuestionButtonStyle>
+          </QuestionListStyle>
+      );
   }
   
 }

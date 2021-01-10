@@ -30,7 +30,7 @@ export interface InterviewButtonProps
 export class InterviewButton extends React.Component<InterviewButtonProps, {}>
 {
 
-  constructor(props) {
+  constructor(props: InterviewButtonProps) {
     super(props);
   }
 

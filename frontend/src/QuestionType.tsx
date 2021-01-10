@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+import { AnswerList } from './AnswerList';
 
 const QuestionTypeStyle = styled.div`
   border: 1px solid black;
@@ -32,37 +33,66 @@ const QuestionTypeLabelStyle = styled.label`
 
 export interface QuestionTypeProps
 {
-
+  index: number;
+  type: string;
+  questionTypeHandler: (questionIndex: number, questionType: string) => void;
 }
 
-export class QuestionType extends React.Component<QuestionTypeProps, {}>
+export interface QuestionTypeState
+{
+  type: string;
+}
+
+export class QuestionType extends React.Component<QuestionTypeProps, QuestionTypeState>
 {
 
-  constructor(props) {
+  constructor(props: QuestionTypeProps) {
     super(props);
-    
+    this.state = {
+      type: this.props.type,
+    }
+    this.questionTypeHandler = this.questionTypeHandler.bind(this);
   }
 
+  private setupType(type: string) {
+    this.setState({ 
+      type: type
+    })
+  }
+
+  private questionTypeHandler(e) {
+    console.log("question [" + this.props.index + "] change type: " + e.currentTarget.value);
+    this.setupType(e.currentTarget.value);
+    this.props.questionTypeHandler(this.props.index, e.currentTarget.value);
+  }
 
   public render()
   {
-      return (
-        <QuestionTypeStyle>
-          <QuestionTypeDivStyle>
-            <QuestionTypeTextStyle> Type: </QuestionTypeTextStyle>
-            <QuestionTypeInputStyle value="text" name="type" checked/>
-            <QuestionTypeLabelStyle> Text </QuestionTypeLabelStyle>
-            <QuestionTypeInputStyle value="checkbox" name="type"/>
-            <QuestionTypeLabelStyle> Checkbox </QuestionTypeLabelStyle>
-            <QuestionTypeInputStyle value="radio" name="type"/>
-            <QuestionTypeLabelStyle> Radio </QuestionTypeLabelStyle>
-          </QuestionTypeDivStyle>
+    const renderAnswer = ()=>{
+      if(this.state.type === 'checkbox'){
+        return <AnswerList />
+      } else if (this.state.type === 'radio') {
+        return <AnswerList />
+      }
+    }
 
-          <QuestionTypeDivStyle>
-          
-          </QuestionTypeDivStyle>
-        </QuestionTypeStyle>
-      );
+    return (
+      <QuestionTypeStyle>
+        <QuestionTypeDivStyle>
+          <QuestionTypeTextStyle> Type: </QuestionTypeTextStyle>
+          <QuestionTypeInputStyle value="text" name="type" onChange={this.questionTypeHandler}/>
+          <QuestionTypeLabelStyle> Text </QuestionTypeLabelStyle>
+          <QuestionTypeInputStyle value="checkbox" name="type" onChange={this.questionTypeHandler}/>
+          <QuestionTypeLabelStyle> Checkbox </QuestionTypeLabelStyle>
+          <QuestionTypeInputStyle value="radio" name="type" onChange={this.questionTypeHandler}/>
+          <QuestionTypeLabelStyle> Radio </QuestionTypeLabelStyle>
+        </QuestionTypeDivStyle>
+
+        <QuestionTypeDivStyle>
+          {renderAnswer()}
+        </QuestionTypeDivStyle>
+      </QuestionTypeStyle>
+    );
   }
 
 

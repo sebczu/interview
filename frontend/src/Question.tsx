@@ -68,8 +68,9 @@ export interface QuestionProps
 {
   index: number;
   data: QuestionData;
-  questionInputHander: (questionIndex: number, question: string) => void;
-  questionRemoveHander: (questionIndex: number) => void;
+  questionInputHandler: (questionIndex: number, question: string) => void;
+  questionRemoveHandler: (questionIndex: number) => void;
+  questionTypeHandler: (questionIndex: number, questionType: string) => void;
 }
 
 export interface QuestionData 
@@ -81,20 +82,20 @@ export interface QuestionData
 export class Question extends React.Component<QuestionProps, {}>
 {
 
-  constructor(props) {
+  constructor(props: QuestionProps) {
     super(props);
-    this.questionInputHander = this.questionInputHander.bind(this);
-    this.questionRemoveHander = this.questionRemoveHander.bind(this);
+    this.questionInputHandler = this.questionInputHandler.bind(this);
+    this.questionRemoveHandler = this.questionRemoveHandler.bind(this);
   }
 
-  private questionInputHander(e) {
+  private questionInputHandler(e) {
     console.log("question [" + this.props.index + "] value: " + e.target.value);
-    this.props.questionInputHander(this.props.index, e.target.value);
+    this.props.questionInputHandler(this.props.index, e.target.value);
   }
 
-  private questionRemoveHander(e) {
+  private questionRemoveHandler(e) {
     console.log("question [" + this.props.index + "] removed");
-    this.props.questionRemoveHander(this.props.index);
+    this.props.questionRemoveHandler(this.props.index);
   }
 
   public render()
@@ -106,14 +107,14 @@ export class Question extends React.Component<QuestionProps, {}>
 
               <QuestionInputStyle
                 value={this.props.data.question}
-                onChange={this.questionInputHander}
+                onChange={this.questionInputHandler}
               />
-              
+
             </QuestionDivStyle>
 
-            <QuestionType />
+            <QuestionType index={this.props.index} type={this.props.data.type} questionTypeHandler={this.props.questionTypeHandler} />
 
-            <RemoveQuestionButtonStyle onClick={this.questionRemoveHander}> REMOVE </RemoveQuestionButtonStyle>
+            <RemoveQuestionButtonStyle onClick={this.questionRemoveHandler}> REMOVE </RemoveQuestionButtonStyle>
           </QuestionStyle>
       );
   }
