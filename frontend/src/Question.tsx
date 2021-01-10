@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+import { QuestionType } from './QuestionType';
 
 const QuestionAnimation = keyframes`
   0% { opacity: 0.0 }
@@ -107,7 +108,10 @@ export class Question extends React.Component<QuestionProps, {}>
                 value={this.props.data.question}
                 onChange={this.questionInputHander}
               />
+              
             </QuestionDivStyle>
+
+            <QuestionType />
 
             <RemoveQuestionButtonStyle onClick={this.questionRemoveHander}> REMOVE </RemoveQuestionButtonStyle>
           </QuestionStyle>
