@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RefObject } from 'react';
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { AnswerList } from './AnswerList';
@@ -45,6 +46,7 @@ export interface QuestionTypeState
 
 export class QuestionType extends React.Component<QuestionTypeProps, QuestionTypeState>
 {
+  private textType: React.RefObject<HTMLInputElement>;
 
   constructor(props: QuestionTypeProps) {
     super(props);
@@ -52,6 +54,8 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
       type: this.props.type,
     }
     this.questionTypeHandler = this.questionTypeHandler.bind(this);
+    this.textType = React.createRef();
+    // this.textType.current.focus();
   }
 
   private setupType(type: string) {
@@ -66,10 +70,15 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
     this.props.questionTypeHandler(this.props.index, e.currentTarget.value);
   }
 
+  private click() {
+    console.info("click");
+    this.textType.current.focus();
+  }
+
   public render()
   {
-    const renderAnswer = ()=>{
-      if(this.state.type === 'checkbox'){
+    const renderAnswer = () => {
+      if(this.state.type === 'checkbox') {
         return <AnswerList />
       } else if (this.state.type === 'radio') {
         return <AnswerList />
@@ -80,8 +89,8 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
       <QuestionTypeStyle>
         <QuestionTypeDivStyle>
           <QuestionTypeTextStyle> Type: </QuestionTypeTextStyle>
-          <QuestionTypeInputStyle value="text" name="type" onChange={this.questionTypeHandler}/>
-          <QuestionTypeLabelStyle> Text </QuestionTypeLabelStyle>
+          <QuestionTypeInputStyle value="text" name="type" onChange={this.questionTypeHandler} ref={this.textType} />
+          <QuestionTypeLabelStyle onClick={() => this.click()}> Text </QuestionTypeLabelStyle>
           <QuestionTypeInputStyle value="checkbox" name="type" onChange={this.questionTypeHandler}/>
           <QuestionTypeLabelStyle> Checkbox </QuestionTypeLabelStyle>
           <QuestionTypeInputStyle value="radio" name="type" onChange={this.questionTypeHandler}/>
