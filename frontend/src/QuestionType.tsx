@@ -46,9 +46,6 @@ export interface QuestionTypeState
 
 export class QuestionType extends React.Component<QuestionTypeProps, QuestionTypeState>
 {
-  private textLabel: React.RefObject<HTMLInputElement>;
-  private checkboxLabel: React.RefObject<HTMLInputElement>;
-  private radioLabel: React.RefObject<HTMLInputElement>;
 
   constructor(props: QuestionTypeProps) {
     super(props);
@@ -56,9 +53,6 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
       type: this.props.type,
     }
     this.questionTypeHandler = this.questionTypeHandler.bind(this);
-    this.textLabel = React.createRef();
-    this.checkboxLabel = React.createRef();
-    this.radioLabel = React.createRef();
   }
 
   private setupType(type: string) {
@@ -74,15 +68,19 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
   }
 
   private clickTextLabel() {
-    this.textLabel.current.click();
+    this.setupType("text");
   }
 
   private clickCheckboxLabel() {
-    this.checkboxLabel.current.click();
+    this.setupType("checkbox");
   }
 
   private clickRadioLabel() {
-    this.radioLabel.current.click();
+    this.setupType("radio");
+  }
+
+  private inputName(): string {
+    return "type" + this.props.index;
   }
 
   public render()
@@ -99,23 +97,23 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
       <QuestionTypeStyle>
         <QuestionTypeDivStyle>
           <QuestionTypeTextStyle> Type: </QuestionTypeTextStyle>
-          
+
           <QuestionTypeInputStyle value="text" 
-            name="type" 
+            name={this.inputName()} 
             onChange={this.questionTypeHandler} 
-            ref={this.textLabel} />
+            checked={this.state.type === "text"}/>
           <QuestionTypeLabelStyle onClick={() => this.clickTextLabel()}> Text </QuestionTypeLabelStyle>
 
           <QuestionTypeInputStyle value="checkbox" 
-            name="type" 
+            name={this.inputName()} 
             onChange={this.questionTypeHandler} 
-            ref={this.checkboxLabel} />
+            checked={this.state.type === "checkbox"}/>
           <QuestionTypeLabelStyle onClick={() => this.clickCheckboxLabel()}> Checkbox </QuestionTypeLabelStyle>
 
           <QuestionTypeInputStyle value="radio" 
-            name="type" 
+            name={this.inputName()} 
             onChange={this.questionTypeHandler} 
-            ref={this.radioLabel} />
+            checked={this.state.type === "radio"}/>
           <QuestionTypeLabelStyle onClick={() => this.clickRadioLabel()}> Radio </QuestionTypeLabelStyle>
         </QuestionTypeDivStyle>
 
