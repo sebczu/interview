@@ -34,7 +34,7 @@ const QuestionTypeLabelStyle = styled.label`
 
 export interface QuestionTypeProps
 {
-  index: number;
+  questionIndex: number;
   type: string;
   questionTypeHandler: (questionIndex: number, questionType: string) => void;
 }
@@ -62,9 +62,9 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
   }
 
   private questionTypeHandler(e) {
-    console.log("question [" + this.props.index + "] change type: " + e.currentTarget.value);
+    console.log("question [" + this.props.questionIndex + "] change type: " + e.currentTarget.value);
     this.setupType(e.currentTarget.value);
-    this.props.questionTypeHandler(this.props.index, e.currentTarget.value);
+    this.props.questionTypeHandler(this.props.questionIndex, e.currentTarget.value);
   }
 
   private clickTextLabel() {
@@ -80,16 +80,16 @@ export class QuestionType extends React.Component<QuestionTypeProps, QuestionTyp
   }
 
   private inputName(): string {
-    return "type" + this.props.index;
+    return "type" + this.props.questionIndex;
   }
 
   public render()
   {
     const renderAnswer = () => {
       if(this.state.type === 'checkbox') {
-        return <AnswerList />
+        return <AnswerList questionIndex={this.props.questionIndex}/>
       } else if (this.state.type === 'radio') {
-        return <AnswerList />
+        return <AnswerList questionIndex={this.props.questionIndex}/>
       }
     }
 

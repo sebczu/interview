@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from "styled-components";
+import { Answer } from './Answer';
 
 const AnswerListStyle = styled.div`
   border: 1px solid black;
@@ -29,7 +30,7 @@ const AddAnswerButtonStyle = styled.a`
 
 export interface AnswerListProps
 {
-
+  questionIndex: number;
 }
 
 export class AnswerList extends React.Component<AnswerListProps, {}>
@@ -48,7 +49,7 @@ export class AnswerList extends React.Component<AnswerListProps, {}>
   {
       return (
         <AnswerListStyle>
-
+          <Answer questionIndex={this.props.questionIndex} answerIndex={0}></Answer>
           <AddAnswerButtonStyle onClick={() => this.onClick()}> + </AddAnswerButtonStyle>
         </AnswerListStyle>
       );

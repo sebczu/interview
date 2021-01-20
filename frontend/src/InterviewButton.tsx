@@ -34,6 +34,10 @@ export class InterviewButton extends React.Component<InterviewButtonProps, {}>
     super(props);
   }
 
+  private onClick() {
+    this.props.root.showInterviewForm();  
+  }
+
   public render(): JSX.Element
   {
     return (
@@ -43,7 +47,4 @@ export class InterviewButton extends React.Component<InterviewButtonProps, {}>
     );
   }
 
-  onClick() {
-    this.props.root.showInterviewForm();  
-  }
 }

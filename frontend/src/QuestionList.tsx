@@ -51,7 +51,7 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
   constructor(props: QuestionListProps) {
     super(props);
     let initQuestions = new Map<number, QuestionData>();
-    initQuestions.set(1, {question: "", type: "text"});
+    initQuestions.set(1, {question: "", type: "text", answers: [""]});
     this.state = {
       questions: initQuestions,
     }
@@ -94,7 +94,7 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
     if (this.state.questions.size !== 0) {
       lastIndex = Array.from(this.state.questions.keys()).pop();
     }
-    this.state.questions.set(++lastIndex, {question: "", type: "text"});
+    this.state.questions.set(++lastIndex, {question: "", type: "text",  answers: [""]});
 
     this.setState({ 
       questions: this.state.questions
@@ -111,7 +111,7 @@ export class QuestionList extends React.Component<QuestionListProps, QuestionLis
 
             {
               Array.from( this.state.questions ).map(([key, value]) => {
-                return <Question index={key} 
+                return <Question questionIndex={key} 
                   data={value}
                   questionInputHandler={this.questionInputHandler} 
                   questionRemoveHandler={this.questionRemoveHandler}

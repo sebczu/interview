@@ -66,7 +66,7 @@ const RemoveQuestionButtonStyle = styled.a`
 
 export interface QuestionProps
 {
-  index: number;
+  questionIndex: number;
   data: QuestionData;
   questionInputHandler: (questionIndex: number, question: string) => void;
   questionRemoveHandler: (questionIndex: number) => void;
@@ -77,6 +77,7 @@ export interface QuestionData
 {
   question: string;
   type: string;
+  answers: Array<string>;
 }
 
 export class Question extends React.Component<QuestionProps, {}>
@@ -89,13 +90,13 @@ export class Question extends React.Component<QuestionProps, {}>
   }
 
   private questionInputHandler(e) {
-    console.log("question [" + this.props.index + "] value: " + e.target.value);
-    this.props.questionInputHandler(this.props.index, e.target.value);
+    console.log("question [" + this.props.questionIndex + "] value: " + e.target.value);
+    this.props.questionInputHandler(this.props.questionIndex, e.target.value);
   }
 
   private questionRemoveHandler(e) {
-    console.log("question [" + this.props.index + "] removed");
-    this.props.questionRemoveHandler(this.props.index);
+    console.log("question [" + this.props.questionIndex + "] removed");
+    this.props.questionRemoveHandler(this.props.questionIndex);
   }
 
   public render()
@@ -112,7 +113,7 @@ export class Question extends React.Component<QuestionProps, {}>
 
             </QuestionDivStyle>
 
-            <QuestionType index={this.props.index} type={this.props.data.type} questionTypeHandler={this.props.questionTypeHandler} />
+            <QuestionType questionIndex={this.props.questionIndex} type={this.props.data.type} questionTypeHandler={this.props.questionTypeHandler} />
 
             <RemoveQuestionButtonStyle onClick={this.questionRemoveHandler}> REMOVE </RemoveQuestionButtonStyle>
           </QuestionStyle>
